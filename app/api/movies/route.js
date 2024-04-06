@@ -4,12 +4,15 @@ import { NextResponse } from "next/server";
 export const POST = async (req) => {
   try {
     const body = await req.json();
-    const { title, description } = body;
+    const { title, description, release } = body;
+    const actors = body.actors;
     
-    const newMovie = await client.post.create({
+    const newMovie = await client.movie.create({
       data: {
         title,
-        description
+        description,
+        actors,
+        release
       },
     });
     
@@ -22,7 +25,7 @@ export const POST = async (req) => {
 
 export const GET = async () => {
   try {
-    const movies = await client.post.findMany();
+    const movies = await client.movie.findMany();
 
     return NextResponse.json(movies);
   

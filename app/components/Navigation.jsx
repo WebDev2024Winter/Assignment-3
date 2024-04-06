@@ -41,9 +41,10 @@ const Navigation = () => {
             <input className='text-red-700 p-2 rounded-xl font-semibold'
             type='text'
             placeholder='Search'
+            name='SearchBox'
             />
 
-            <button type='button' className='bg-red-700 px-4 py-4 hover:bg-red-900 font-semibold rounded-md'>Search</button>
+            <button type='button' name='SearchButton' className='bg-red-700 px-4 py-4 hover:bg-red-900 font-semibold rounded-md'>Search</button>
           </div>
         
         </div>

@@ -1,11 +1,11 @@
-import client from "@/app/libs/prismadb";
+import client from "@/libs/prismadb";
 import { NextResponse } from "next/server";
 
 export const GET = async (request, {params}) => {
     try {
         const { id } = params;
         
-        const movie = await client.post.findUnique({
+        const movie = await client.movie.findUnique({
             where: {
                 id
             }
@@ -25,17 +25,20 @@ export const PATCH = async (request, {params}) => {
     try {
         const body = await request.json();
         const { id } = params;
-        const { title, description } = body;
-
-        const updateMovie = await client.post.update({
+        const { title, description, release } = body;
+        const actors = body.actors;
+    
+        const updateMovie = await client.movie.update({
             where: {
                 id
             },
 
             data: {
                 title,
-                description
-            }
+                description,
+                actors,
+                release
+              }
         });
 
         if(!updateMovie){
@@ -53,7 +56,7 @@ export const DELETE = async (request, {params}) => {
     try {
         const { id } = params;
         
-        await client.post.delete({
+        await client.movie.delete({
             where: {
                 id
             }
